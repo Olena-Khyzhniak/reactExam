@@ -1,4 +1,5 @@
 # React In-class Exam, October 2025
+Olena Khyzhniak, student number: 20106012
 
 ## 1. Setup instructions
 
