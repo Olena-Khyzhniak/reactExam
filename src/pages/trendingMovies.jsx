@@ -23,7 +23,7 @@ const TrendingMoviesPage = () => {
     <MovieListPageTemplate
       title="Trending Movies"
       movies={data.results}
-      action={(movie) => <AddToPlaylistIcon movie={movie} />}
+      action={(movie) => <AddToTrendingIcon movie={movie} />}
     />
   );
 };
