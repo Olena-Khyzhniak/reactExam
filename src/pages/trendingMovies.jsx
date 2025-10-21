@@ -5,9 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import MovieListPageTemplate from "../components/templateMovieListPage";
 import Spinner from "../components/spinner";
 import { getTrendingMovies } from "../api/tmdb-api";
-import AddToPlaylistIcon from "../components/cardIcons/addToPlaylistIcon";
-
-
+import AddToTrendingIcon from "../components/cardIcons/addToTrending";
 
 const TrendingMoviesPage = () => {
   const { data, isLoading, isError, error } = useQuery({
