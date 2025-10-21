@@ -1,10 +1,36 @@
 import React, { useState } from "react";
+import { getTrendingMovies } from "../api/tmdb-api";
 
 export const MoviesContext = React.createContext(null);
 
 const MoviesContextProvider = (props) => {
   const [favorites, setFavorites] = useState([]);
+  const [trending, setTrending] = useState([]);
+  const [topTrendingMoviesIds, setTopTrendingMoviesIds] = useState([]);
   const [myReviews, setMyReviews] = useState({});
+
+  const addToTrending = (movie) => {
+    let newTrending = [];
+    if (!trending.includes(movie.id)) {
+      newTrending = [...trending, movie.id];
+    }
+    setTrending(newTrending);
+  };  
+
+  
+
+useEffect(() => {
+  getTrendingMovies("day").then((data) => {
+    const ids = data.results.map((movie) => movie.id);
+    setTopTrendingMoviesIds(ids);
+  });
+}, []);
+
+  const removeTrending = (movie) => {
+    setTrending(trending.filter(
+      (mId) => mId !== movie.id
+    ))
+  };
 
   const addToFavorites = (movie) => {
     let newFavorites = [];
@@ -34,6 +60,9 @@ const MoviesContextProvider = (props) => {
     <MoviesContext.Provider
       value={{
         favorites,
+        trending,   
+        addToTrending,
+        removeTrending, 
         addToFavorites,
         removeFromFavorites,
         addReview,
@@ -46,3 +75,6 @@ const MoviesContextProvider = (props) => {
 };
 
 export default MoviesContextProvider;
+
+
+
