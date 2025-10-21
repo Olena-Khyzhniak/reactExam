@@ -31,6 +31,8 @@ export default function MovieCard({ movie, action }) {
     addToFavorites(movie);
   };
 
+  const releaseDateObj = new Date(movie.release_date);
+  const formattedDate = `${releaseDateObj.getDate()}/${releaseDateObj.getMonth() + 1}/${releaseDateObj.getFullYear()}`;
 
   return (
     <Card>
@@ -48,6 +50,11 @@ export default function MovieCard({ movie, action }) {
           </Typography>
         }
       />
+
+
+     title={<Typography variant="h6" component="p">
+  <CalendarIcon fontSize="small" /> {formattedDate}
+</Typography>}
 
       <CardMedia
         sx={{ height: 500 }}
